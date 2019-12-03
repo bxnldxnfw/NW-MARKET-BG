@@ -1,0 +1,40 @@
+body{
+    overflow: hidden;
+}
+.all_cover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(96,96,96,0.5);
+}
+#login_btn{
+    margin-left: 80%;
+    margin-top: 5%;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+
+}
+.img{
+    width: 250px;
+    border-radius: 15px;
+    float: left;
+    padding: 5px;
+}
+#register_btn{
+    margin-top: 5%;
+    width: 100px;
+    height: 40px;
+    margin-left: 1%;
+    font-size: 20px;
+}
+#entrance{
+    margin-left: 40%;
+    margin-top: 25%;
+    color: whitesmoke;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    background-color: red;
+    border: none;
+}

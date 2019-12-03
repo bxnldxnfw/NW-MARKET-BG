@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    author:lizhuang
+    time: 2019.11.21 17:30
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/iconfont_.css">
+    <script src="../js/echarts.js"></script>
+
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-brand" style="margin-left: 40%;height: 50px;"><img src="../image/西农微超市__.png" style="height: 130%;"/></div>
+    <div class="navbar-collapse collapse">
+        <ul id="navbar" class="nav navbar-nav navbar-right" style="height: 50px;margin-right: 30px">
+            <li><a style="padding-top: 0;padding-bottom: 0;"><img src="../image/管理员.jpg" style="width: 40px;height: 40px;border-radius: 50%;margin-top: 5px;"></a></li>
+            <li><a style="padding-left: 0;">管理员</a></li>
+            <li><a>修改密码</a></li>
+            <li><a>注销</a></li>
+        </ul>
+    </div>
+
+</nav>
+
+<!--侧边栏-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" style="background-color: #222222;position: fixed;top: 50px;border:none;height: 100%;padding-left: 0;padding-right: 0">
+            <ul style="margin-top: 10%; padding-left: 0;" type="none" >
+                <li class="side_bar"><a class="side_bar_a" href="#">后台主页</a></li>
+                <li class="side_bar_" isopen="0"><a class="side_bar_a " href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><span class="caret" style="color: whitesmoke;"></span></li>
+                <li class="side_bar"><a class="side_bar_a" href="#">用户管理</a></li>
+                <li class="side_bar"><a class="side_bar_a" href="#">统计报表</a></li>
+                <li class="side_bar" style="border-bottom: 1px #2c3441 solid"><a class="side_bar_a" href="#">订单管理</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--主窗口-->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="main-title"style="margin-right: 20px;"><p style="margin-left: 20px;width: 20%;">后台主页</p></div>
+    <div class="row">
+        <div class="col-md-3" style="margin-top: 55px;padding-left: 16px;">
+            <div class="module">
+                <div style="margin-top: 20px;font-size: 18px;border-left: 4px solid lightgreen;margin-left: 8%;">&nbsp;&nbsp;今日数据统计</div>
+                <div style="margin-top: 20px;margin-bottom: 20px">
+                    <ul class="ul_">
+                        <li>
+                            <div class="state">
+                                <i class="iconfont_ icon-xiangxiajiantoucuxiao" style="line-height: 70px;"></i>
+                            </div>
+                            <div class="data1">
+                                <p>今日订单数量</p>
+                                <h4 style="text-align: center">2</h4>
+                            </div>
+                            <div class="data2">
+                                <p>与昨日数量比</p>
+                                <h4 style="text-align: center">5%</h4>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="state">
+                                <i class="iconfont_ icon-xiangxiajiantoucuxiao" style="line-height: 70px;"></i>
+                            </div>
+                            <div class="data1">
+                                <p>今日订单总金额</p>
+                                <h4 style="text-align: center">2</h4>
+                            </div>
+                            <div class="data2">
+                                <p>与昨日金额比</p>
+                                <h4 style="text-align: center">5%</h4>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="state">
+                                <i class="iconfont_ icon-xiangxiajiantoucuxiao" style="line-height: 70px;"></i>
+                            </div>
+                            <div class="data1">
+                                <p>今下单客户数</p>
+                                <h4 style="text-align: center">2</h4>
+                            </div>
+                            <div class="data2">
+                                <p>与昨日数量比</p>
+                                <h4 style="text-align: center">5%</h4>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="state">
+                                <i class="iconfont_ icon-xiangxiajiantoucuxiao" style="line-height: 70px;"></i>
+                            </div>
+                            <div class="data1">
+                                <p>平台拥有用户数</p>
+                                <h4 style="text-align: center">210</h4>
+                            </div>
+                            <div class="data2">
+                                <p>昨日注册用户数</p>
+                                <h4 style="text-align: center">200</h4>
+                            </div>
+                        </li>
+                        <li style="height: 0"></li>
+                    </ul>
+                </div>
+        </div>
+        </div>
+        <div class="col-md-6" style="margin-top: 55px;padding: 0">
+            <div class="module">
+                <div style="margin-top: 20px;font-size: 18px;border-left: 4px solid lightgreen;margin-left: 8%;">&nbsp;&nbsp;今日商品销售占比</div>
+                <div id="pie_chart"></div>
+            </div>
+        </div>
+        <div class="col-md-3" style="margin-top: 55px;">
+            <div class="module">
+                <div style="margin-top: 20px;font-size: 18px;border-left: 4px solid lightgreen;margin-left: 8%;">&nbsp;&nbsp;出单时段统计</div>
+                <div style="height: 371px;">
+                    <ul style="list-style: none;margin-top: 20px;margin-left: -10px;">
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">00:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">02:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">04:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">06:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">08:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">10:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">12:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">14:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">16:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">18:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">20:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tim_">
+                                <span style="float: left">22:00</span>
+                                <div class="progress" style="width: 45%;height: 10px;margin-top:5px;margin-bottom:0;margin-left:5px;float: left;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                </div>
+                                <span style="float: left;margin-left: 5px;">200单</span><br>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="margin-top: 10px;padding-left: 16px;padding-right: 8px;">
+            <div class="module">
+                <div style="margin-top: 20px;font-size: 18px;border-left: 4px solid lightgreen;margin-left: 8%;">&nbsp;&nbsp;订单总量统计</div>
+                <div id="line_chart"></div>
+            </div>
+        </div>
+        <div class="col-md-6" style="margin-top: 10px;padding-left: 7px">
+            <div class="module">
+                <div style="margin-top: 20px;font-size: 18px;border-left: 4px solid lightgreen;margin-left: 8%;">&nbsp;&nbsp;交易金额总量统计</div>
+                <div id="line_chart_"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主窗口-->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="display: none">
+    <div class="main-title"><p style="margin-left: 20px;width: 20%;">商品管理 > 商品库</p></div>
+    <div class="row" style="padding: 16px;">
+        <div class="col-md-12" id="search">
+            <div class="col-md-2">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="一级分类"/>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">零食</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">饮料</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">日用品</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">文具</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-md-2" style="">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="二级分类"/>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">零食</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">饮料</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">日用品</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">文具</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-default">类别搜索</button>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <input class="form-control" placeholder="输入商品名称">
+            </div>
+            <div class="col-md-1"><button class="btn btn-default">商品搜索</button></div>
+        </div>
+        <div class="col-md-12" id="table">
+            <p class="table-title">全部商品</p>
+            <table class="table table-hover" id="goods">
+                <thead>
+                <tr>
+                    <th>商品编号</th>
+                    <th>商品名称</th>
+                    <th>一级分类</th>
+                    <th>二级分类</th>
+                    <th>库存量</th>
+                    <th>销售量</th>
+                    <th>原价</th>
+                    <th>售价</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td style="display:table-cell; vertical-align:middle">饮料</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">aaa</td>
+                    <td style="display:table-cell; vertical-align:middle">
+                        <button class="btn btn-primary" style="height: 30px;" is="0">修改</button>
+                        <button class="btn btn-primary" style="height: 30px;" is="0">更多</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td><button class="btn btn-primary" style="height: 30px;">修改</button></td>
+                </tr>
+            </table>
+            <ul class="pagination" style="margin: 0 35%;">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--主窗口-->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="display: none">
+    <div class="main-title"><p style="margin-left: 20px;width: 20%;">商品管理 > 添加商品</p></div>
+    <div class="row" style="padding: 16px;">
+        <div class="col-md-12" id="add_goods">
+            <div class="form-inline" style="margin-left: 3%;">
+                <div class="form-group">
+                    <span>商品编号:</span>
+                    <input class="form-control" type="text" placeholder="请输入商品编号">
+                </div><br>
+                <div class="form-group" style="margin-top: 20px;">
+                    <span>商品名称:</span>
+                    <input class="form-control" type="text" placeholder="请输入商品名称">
+                </div><br>
+                <div class="form-group" style="margin-top: 20px;">
+                    <span>商品类别:</span>
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="一级分类"/>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#">零食</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">饮料</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">日用品</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">文具</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="二级分类"/>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#">零食</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">饮料</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">日用品</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">文具</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group" style="margin-top: 20px;">
+                    <span>商品库存:</span>
+                    <input class="form-control" type="text" placeholder="请输入商品库存量">
+                </div><br>
+                <div class="form-group" style="margin-top: 20px;">
+                    <span>商品进价:</span>
+                    <input class="form-control" type="text" placeholder="请输入商品进价">
+                </div><br>
+                <div class="form-group" style="margin-top: 20px;">
+                    <span>商品售价:</span>
+                    <input class="form-control" type="text" placeholder="请输入商品售价">
+                </div><br>
+                <div class="container">
+                    <div class="container" style="float: left;width: 20%;margin-top: 20px;">
+                        <input class="input-file1" style="width:0;float: left" type="file" accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp">
+                        <div style="text-align: center; width: 100%;height: 200px;margin-top: 2%;margin-left: 2%;border: 2px dashed #dadada;background-color: #f5f5f7">
+                            <div style="margin-top: 40%;color: gray">
+                                展示图1
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" style="float: left;width: 20%;margin-top: 20px;">
+                        <input class="input-file1" style="width:0;float: left" type="file" accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp">
+                        <div style="text-align: center; width: 100%;height: 200px;margin-top: 2%;margin-left: 2%;border: 2px dashed #dadada;background-color: #f5f5f7">
+                            <div style="margin-top: 40%;color: gray">
+                                展示图2
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" style="float: left;width: 20%; margin-top: 20px">
+                        <input class="input-file1" style="width:0;float: left" type="file" accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp">
+                        <div style="text-align: center; width: 100%;height: 200px;margin-top: 2%;margin-left: 2%;border: 2px dashed #dadada;background-color: #f5f5f7">
+                            <div style="margin-top: 40%;color: gray">
+                                展示图3
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" style="float: left;width: 20%; margin-top: 20px;">
+                        <input class="input-file1" style="width:0;float: left" type="file" accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp">
+                        <div style="text-align: center; width: 100%;height: 200px;margin-top: 2%;margin-left: 2%;border: 2px dashed #dadada;background-color: #f5f5f7">
+                            <div style="margin-top: 40%;color: gray">
+                                展示图4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="margin-top: 20px;margin-left: 40px;width: 80px;">提交</button>
+                <button class="btn btn-primary" style="margin-top: 20px;margin-left: 20px;width: 80px;">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".main").css("height",$(window).height()-50+"px");
+    });
+    // 带有子按钮的选项
+    $(".side_bar_").click(function () {
+        console.log($(this).attr("isopen"));
+        if($(this).attr("isopen") === "0"){
+            $(this).after("<li class=\"side_bar_s\" id='side_bar_s_'><a class=\"side_bar_a\" href=\"#\">商品库</a></li>\n" +
+                "                <li class=\"side_bar_s\"><a class=\"side_bar_a\" href=\"#\">添加商品</a></li>");
+            $(this).attr("isopen","1");
+            $(".side_bar_s").click(function () {
+                $(".side_bar_s").attr("style","");
+                $(".side_bar_s").find("a").attr("style","");
+                $(".side_bar").attr("style","");
+                $(".side_bar").find("a").attr("style","");
+                var main = $(".main");
+                $(this).css({
+                    "border-left":"2px lightgreen solid",
+                    "background-color":"#474c5c",
+                    "color":"white"
+                });
+                $(this).find("a").css({
+                    "color":"white",
+                    "text-decoration":"none"
+                });
+
+                if($(this).find("a").text() === "商品库"){
+                    main.css("display","none");
+                    main.eq(1).css("display","");
+                    $(".main-title").css("width","82%");
+                }else if($(this).find("a").text() === "添加商品"){
+                    main.css("display","none");
+                    main.eq(2).css("display","");
+                    $(".main-title").css("width","81%");
+                }
+            })
+        }else{
+            $(this).next().remove();
+            $(this).next().remove();
+            $(this).attr("isopen","0");
+        }
+
+    });
+
+    // 侧边栏按钮切换
+    $(".side_bar").click(function () {
+        $(".side_bar").attr("style","");
+        $(".side_bar").find("a").attr("style","");
+        var main = $(".main");
+        $(this).css({
+            "border-left":"2px lightgreen solid",
+            "background-color":"#474c5c",
+            "color":"white"
+        });
+        $(this).find("a").css({
+            "color":"white",
+            "text-decoration":"none"
+        });
+        if($(".side_bar_").attr("isopen") === "1"){
+            $(".side_bar_s").remove();
+            $(".side_bar_").attr("isopen","0");
+        }
+
+        if($(this).find("a").text() === "后台主页"){
+            main.css("display","none");
+            main.eq(0).css("display","");
+            $(".main-title").css("width","81%");
+        }
+    })
+</script>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('pie_chart'));
+    var data = getData(10);
+
+    option = {
+        title : {
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 10,
+            top: 20,
+            bottom: 20,
+            data: data.legendData,
+
+            selected: data.selected
+        },
+        series : [
+            {
+                name: '姓名',
+                type: 'pie',
+                radius : '55%',
+                center: ['40%', '50%'],
+                data: data.seriesData,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    }
+    
+    function getData(count) {
+        var nameList = [
+            '饮料', '膨化食品', '日用品', '文具', '凉果蜜饯', '口香糖', '干果', '果冻', '汽水', '牛奶'];
+        var legendData = [];
+        var seriesData = [];
+        var selected = {};
+        for (var i = 0; i < nameList.length; i++) {
+            var name = nameList[i];
+            legendData.push(name);
+            seriesData.push({
+                name: name,
+                value: Math.round(Math.random() * 100000)
+            });
+            selected[name] = i < 6;
+        }
+        console.log({
+            legendData: legendData,
+            seriesData: seriesData,
+            selected: selected
+        })
+
+        return {
+            legendData: legendData,
+            seriesData: seriesData,
+            selected: selected
+        };
+
+        function makeWord(max, min) {
+            var nameLen = Math.ceil(Math.random() * max + min);
+            var name = [];
+            for (var i = 0; i < nameLen; i++) {
+                name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
+            }
+            return name.join('');
+        }
+    }
+
+    myChart.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('line_chart'));
+    var day1 = new Date();
+    day1.setTime(day1.getTime());
+    var s1 = (day1.getMonth()+1) + "月" + (day1.getDate()-2)+"日";
+    var s2 = (day1.getMonth()+1) + "月" + (day1.getDate()-3)+"日";
+    var s3 = (day1.getMonth()+1) + "月" + (day1.getDate()-4)+"日";
+    var s4 = (day1.getMonth()+1) + "月" + (day1.getDate()-5)+"日";
+    var s5 = (day1.getMonth()+1) + "月" + (day1.getDate()-6)+"日";
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['今天', '昨天', s1, s2, s3, s4, s5]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+    myChart.setOption(option);
+
+</script>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('line_chart_'));
+    var day1 = new Date();
+    day1.setTime(day1.getTime());
+    var s1 = (day1.getMonth()+1) + "月" + (day1.getDate()-2)+"日";
+    var s2 = (day1.getMonth()+1) + "月" + (day1.getDate()-3)+"日";
+    var s3 = (day1.getMonth()+1) + "月" + (day1.getDate()-4)+"日";
+    var s4 = (day1.getMonth()+1) + "月" + (day1.getDate()-5)+"日";
+    var s5 = (day1.getMonth()+1) + "月" + (day1.getDate()-6)+"日";
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['今天', '昨天', s1, s2, s3, s4, s5]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+    myChart.setOption(option);
+</script>
+<script type="text/javascript">
+
+    $(".dropdown-menu a").click(function () {
+        var text = $(this).text();
+        $(this).parents(".input-group-btn").prev().attr("value",text);
+    });
+    $("td button").click(function () {
+        if($(this).attr("is") === "0"){
+            $(this).text("保存");
+            $(this).parent().prevAll().attr("contenteditable","true");
+            $(this).parent().parent().css("border-left","3px solid");
+            $(this).attr("is","1");
+        }else{
+            $(this).text("修改");
+            $(this).parent().prevAll().attr("contenteditable","false");
+            $(this).parent().parent().css("border-left","");
+            $(this).attr("is","0");
+            alert("修改成功");
+        }
+    })
+</script>
+</html>
